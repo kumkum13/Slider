@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Slider.css">
+    <title>AutoSlider</title>
+</head>
+<body>
+    <div class="slider-container">
+        <div class="slider-wrapper">
+          <div class="slide"><img src="Slider1.jpg" alt="Image 1"></div>
+          <div class="slide"><img src="Slider2.jpg" alt="Image 2"></div>
+          <div class="slide"><img src="Slider3.jpg" alt="Image 3"></div>
+        </div>
+        <div class="arrow prev" onclick="prevSlide()">&#10094;</div>
+        <div class="arrow next" onclick="nextSlide()">&#10095;</div>
+      </div>
+
+      <script>
+        let currentIndex = 0;
+        const totalSlides = 3;
+        const slideInterval = 2000;  
+
+        function showSlide(index) {
+          const sliderWrapper = document.querySelector('.slider-wrapper');
+          const slideWidth = document.querySelector('.slide').clientWidth;
+          const newPosition = -index * slideWidth;
+          sliderWrapper.style.transform = `translateX(${newPosition}px)`;
+        }
+
+        function nextSlide() {
+          currentIndex = (currentIndex + 1) % totalSlides;
+          showSlide(currentIndex);
+        }
+
+        function prevSlide() {
+          currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+          showSlide(currentIndex);
+        }
+
+         
+        setInterval(nextSlide, slideInterval);
+      </script>
+</body>
+</html>
